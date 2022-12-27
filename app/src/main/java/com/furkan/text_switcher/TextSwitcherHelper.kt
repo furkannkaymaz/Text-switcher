@@ -11,7 +11,8 @@ class TextSwitcherHelper(){
 
     val mainHandler = Handler(Looper.getMainLooper())
 
-    fun textSwitcher(textSwitcher: TextSwitcher, context: Context, textToShow: Array<String>) {
+    fun textSwitcher(textSwitcher: TextSwitcher, context: Context, textToShow: Array<String>, onChange: (String) -> Unit
+    ) {
         var currentIndex = 0
         with(textSwitcher){
             this.setInAnimation(context, R.anim.anim_out);
@@ -24,13 +25,15 @@ class TextSwitcherHelper(){
                     currentIndex = 0
                 }
                 textSwitcher.setText(textToShow[currentIndex])
-
+                onChange.invoke(textToShow[currentIndex])
                 mainHandler.postDelayed(this, DELAY_TEXT_SWITCHER)
 
             }
         })
     }
-    
+    fun textSwitcherRemove(){
+        mainHandler.removeCallbacksAndMessages(null);
+    }
 }
 
 

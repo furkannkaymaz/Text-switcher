@@ -12,15 +12,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val textSwitcher = findViewById<TextSwitcher>(R.id.tvAnimate)
-
         val textToShow = arrayOf("Android", "Kotlin")
 
         val textSwitcherHelper = TextSwitcherHelper()
 
-        textSwitcherHelper.textSwitcher(textSwitcher,this,textToShow)
-
+        textSwitcherHelper.textSwitcher(textSwitcher,this,textToShow) {
+            // you can change view or etc..
+        }
     }
-
     override fun onDestroy() {
         super.onDestroy()
         textSwitcherHelper.textSwitcherRemove()
